@@ -1,3 +1,56 @@
+# DC_TTS data generation to fake your own voice
+
+Some convenience scripts to help generate data for training this dc_tts model(this is basically just a fork of Kyubyong original repository).
+This can be used for faking your own voice, via transfer learning: 
+
+Use: 
+```python create_data.py```
+```
+ There’s been a lot of memes passed around comparing the truck to the Pontiac Aztek, to bad early
+
+
+Speak now ! Hit enter when finished !
+* done recording
+
+
+3D models with few polygons,  to strange 1970s concept cars or outdated concepts of what the future should
+
+
+
+Speak now ! Hit enter when finished !
+* done recording
+
+```
+
+This will output the follwoing files:
+
+**LJSpeech-1.1/metadata.csv**
+
+    LJ001-0000| There’s been a lot of memes passed around comparing the truck to the Pontiac Aztek, to bad early| Theres been a lot of memes passed around comparing the truck to the Pontiac Aztek, to bad early 
+    LJ001-0001|3D models with few polygons,  to strange 1970s concept cars or outdated concepts of what the future should|three D models with few polygons,  to strange nineteen seventys concept cars or outdated concepts of what the future should 
+    LJ001-0002|look like. Others have really liked the design, calling it a refreshing take on the pickup truck, which hasn’t|look like. Others have really liked the design, calling it a refreshing take on the pickup truck, which hasnt 
+
+**wavs/***
+
+![](speech_wavs.png)
+
+It also does a little bit of text normalization, which helps the network learn a little bit better: 
+* "3D" -> |conversion| ->  three d
+* "1970s" -> |conversion| ->  nineteen seventys
+
+Additionally to the original requirements, the following two python packages are needed:
+* pyaudio
+* num2words
+
+Warning: My code in create_data.py is currently not pretty(and maybe never will be).
+Text sample taken from https://electrek.co
+
+If you want to know what kind of results can be expected with transfer learning checkout out [sentdex's youtube video](https://www.youtube.com/watch?v=6bFN2YkN6bo) 
+
+The orignal README can be found below this line:
+
+--------------------------------------------------
+
 # A TensorFlow Implementation of DC-TTS: yet another text-to-speech model
 
 I implement yet another text-to-speech model, dc-tts, introduced in [Efficiently Trainable Text-to-Speech System Based on Deep Convolutional Networks with Guided Attention](https://arxiv.org/abs/1710.08969). My goal, however, is not just replicating the paper. Rather, I'd like to gain insights about various sound projects.
